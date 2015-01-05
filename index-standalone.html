@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Information Diving</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+		<div id="landing">
+			<h1>Information Diving</h1>
+			<div id="tagline">A visualization of complexity, designed for virtual reality, built with WebGL.</div>
+			<div id="credits">
+				Based on the art of <a href="http://complexitygraphics.com/" target="_blank">Tatiana Plakhova</a>
+				<br />
+				Development by <a href="https://github.com/tparisi" target="_blank">Tony Parisi</a> and <a href="https://github.com/ericrius1" target="_blank">Eric Levin</a>
+				<br />
+				Creative Direction by <a href="http://joshcarpenter.ca/" target="_blank">Josh Carpenter</a>
+				<br />
+				VR-enabled <a href="http://vrhelloworld.com/builds/" target="_blank">Firefox</a> or <a href="https://drive.google.com/folderview?id=0BzudLt22BqGRbW9WTHMtOWMzNjQ&usp=sharing#list" target="_blank">Chrome</a> required.
+			</div>
+			<div id="vrmode">
+				Press <b>F</b> for
+				<div class="button">VR Mode</div>
+			</div>
+		</div>
+		<div id = "container" style="z-index:-2"></div>
+		<script src="lib/vizi.js"></script>
+		<script src="lib/StereoEffect.js"></script>
+		<script src="lib/underscore.js"></script>
+		<script src="lib/C4DLineLoader.js"></script>
+		<script src="lib/vrclient.js"></script>
+		<script src="lib/Loader.js"></script>
+		<script src="lib/ShaderLoader.js"></script>
+		<script src="lib/jquery.min.js"></script>
+		<script src="lib/stats.js"></script>
+		<script src="lib/TextCreator.js"></script>
+		<script src="lib/audiocontroller.js"></script>
+		<script src="lib/stream.js"></script>
+
+		<script src = "js/constants.js"></script>
+		<script src = "js/textmanager.js"></script>
+		<script src = "js/text.js"></script>
+		<script src = "js/textframed.js"></script>
+		<script src = "js/deathstar.js"></script>
+		<script src = "js/birds.js"></script>
+		<script src = "js/media.js"></script>
+
+
+		<script src = "js/scripts/flightpath.js"></script>
+		<script src = "js/effectors/visibility.js"></script>
+		<script src = "js/effectors/scale.js"></script>
+
+		<script src = "js/cloners/clonermanager.js"></script>
+		<script src = "js/cloners/cloner.js"></script>
+		<script src = "js/cloners/arcprimitive.js"></script>
+		<script src = "js/cloners/curvedotprimitive.js"></script>
+		<script src = "js/cloners/curvedotprimitivefixed.js"></script>
+		<script src = "js/cloners/fresnalprimitive.js"></script>
+		<script src = "js/cloners/straightlineprimitive.js"></script>
+		<script src = "js/cloners/tracerprimitive.js"></script>
+		<script src = "js/infoworld.js"></script>
+
+		<script>
+
+		$(document).ready(function() {
+
+		  var container = document.getElementById('container')
+		  var infoworld = new InfoWorld({
+		  	container: container,
+		  	displayStats: true,
+		  	riftRender: true
+		  });
+
+		  var fullScreenButton = document.querySelector( '.button' );
+
+		  fullScreenButton.onclick = function() {
+			  Vizi.Graphics.instance.setFullScreen( true );
+		  };
+
+		  function onkey(event) {
+		    if (!(event.metaKey || event.altKey || event.ctrlKey)) {
+		      event.preventDefault();
+		    }
+		    switch (event.keyCode) {
+		      case 70: // f
+		        Vizi.Graphics.instance.setFullScreen( true );
+		        break;
+		      //case 90: // z
+		      //  VRManager.zeroSensor();
+		      //  break;
+		    }
+		  }
+
+		  window.addEventListener("keydown", onkey, true);
+
+		});
+		</script>
+
+	</body>
+</html>
